@@ -91,7 +91,7 @@ Now, you **_train the model with the script in `Experiment/MakeScript.py`_**.
 ## Ensemble classifier
 
 We run a 5-fold cross-validation, and then ensemble these 5 models. You can use `ensemble.sh` and will not need to edit `ensemble_our_classifier.py`. 
-  - Again, please change the [path in `ensemble.sh`](https://github.com/datduong/ClassifyNF1/blob/be84599a6ebde077a9a7f31b83c94bfc5fe4d631/ensemble.sh#L9) to your folder on your own machine. 
+  - Again, please change the [path in `ensemble.sh`](https://github.com/datduong/ClassifyNF1/ensemble.sh#L9) to your folder on your own machine. 
 
 ## Pre-trained models
 
