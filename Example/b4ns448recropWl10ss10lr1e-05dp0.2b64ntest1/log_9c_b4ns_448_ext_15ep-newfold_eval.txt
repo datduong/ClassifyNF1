@@ -1,0 +1,1 @@
+Thu May 27 14:44:45 2021 Fold 0, valid loss: 0.33245, acc: 90.7098, bal_acc 0.817724, bal_acc_20 0.590062, bal_acc_ourdata 0.828571
