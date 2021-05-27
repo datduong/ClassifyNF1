@@ -51,7 +51,7 @@ Once you download the SIIM-ISIC dataset, you can download our NF1 dataset. These
 
   - For the SIIM-ISIC dataset, `dataset.py` will auto-detect these images, you will not need to do anything except for downloading the SIIM-ISIC data as explained above.
 
-  - For our NF1 dataset, `dataset.py` requires a manually created `train.csv` ([we provide them here](https://github.com/datduong/ClassifyNF1/tree/master/TrainTestCsv)) where each row contains the path to each image. Notice, we _do not_ need a `test.csv`. The `train.csv` contains 6 folds (starting from 0 to 5), the last fold (number 5) contains the test images. 
+  - For our NF1 dataset, `dataset.py` requires a manually created `train.csv` ([we provide them here](https://github.com/datduong/ClassifyNF1/tree/master/TrainTestCsv) and the same files are also in [here](https://github.com/datduong/ClassifyNF1/tree/master/Example)) where each row contains the path to each image. Notice, we _do not_ need a `test.csv`. The `train.csv` contains 6 folds (starting from 0 to 5), the last fold (number 5) contains the test images. 
 
     - We provide two different `train.csv`, one for the _focused images_ (where just the skin condition is showing) and one for the _panoramic images_ (where other body parts, like arms and leg, may show). 
 
