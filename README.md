@@ -57,7 +57,7 @@ Once you download the SIIM-ISIC dataset, you can download our NF1 dataset. These
 
       - We call the _focused images_ as `Crop`, and _panoramic images_ as `Recrop`. I'm sorry for this confusion. 
 
-      - The video below show how your NF1 data source needs to be. 
+      - The video below shows how your NF1 dataset needs to look like. 
 
       [![asciicast](https://asciinema.org/a/B2T6TqERamgtm7JVScaIXmVcu.svg)](https://asciinema.org/a/B2T6TqERamgtm7JVScaIXmVcu)
 
