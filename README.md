@@ -73,7 +73,7 @@ Now, you **_train the model with the script in `Experiment/MakeScript.py`_**.
 
     - To run _panoramic images_ [change `imagetype='recrop'` in this line](https://github.com/datduong/ClassifyNF1/blob/master/Experiment/MakeScript.py#L28)
 
-    - The video below show how you create the training script. 
+    - **_The video below shows how you create the training script and train the model_**.
 
     [![asciicast](https://asciinema.org/a/AFY2FSOtqXzWy0KSveqrP4UR2.svg)](https://asciinema.org/a/AFY2FSOtqXzWy0KSveqrP4UR2)
 
@@ -91,13 +91,13 @@ Now, you **_train the model with the script in `Experiment/MakeScript.py`_**.
 ## Ensemble classifier
 
 We run a 5-fold cross-validation, and then ensemble these 5 models. You can use `ensemble.sh` and will not need to edit `ensemble_our_classifier.py`. 
-  - Again, please change the [path in `ensemble.sh`](https://github.com/datduong/ClassifyNF1/blob/master/ensemble.sh#L6) to your folder on your own machine. 
+  - Again, please change the [path in `ensemble.sh`](https://github.com/datduong/ClassifyNF1/blob/master/ensemble.sh#L9) to your folder on your own machine. 
 
 ## Pre-trained models
 
-**[Pytorch pre-trained models (ends with .pth) are on this google drive here]**(https://drive.google.com/drive/folders/1m2c7uWPOkIK_FU3gTIpjJbqfpYHqE_0_?usp=sharing). In this example, I am put all the models into the folder `/data/duongdb/DeployOnline/ClassifyNF1/Example/`, but you can choose your own path on your own machine. 
+**[Pytorch pre-trained models, ending with .pth, are on this google drive here](https://drive.google.com/drive/folders/1m2c7uWPOkIK_FU3gTIpjJbqfpYHqE_0_?usp=sharing)**. In this example, I am putting all the models into the folder `/data/duongdb/DeployOnline/ClassifyNF1/Example/`, but you can choose your own path on your own machine. 
 
-After you download the pre-trained models, you can run `Experiment/MakeScriptEvalOnly.py` to make the evaluation scripts. **_Please note, you have to change the fold paths with respect to on your own machine._** The video below shows you where to put the pre-trained models. We do 5 fold-cv so there will be 5 models. You can evaluate each of them like in the video below. 
+After you download the pre-trained models, you can run `Experiment/MakeScriptEvalOnly.py` to make the evaluation scripts. **_Please note, as with `Experiment/MakeScript.py`, you have to change the folder paths with respect to your own machine._** The video below shows where you should put the pre-trained models. We do 5 fold-cv so there will be 5 models. You can evaluate each of them like in the video below. 
 
 [![asciicast](https://asciinema.org/a/3GGbptAuPaQ7HohAuLFq1wNaN.svg)](https://asciinema.org/a/3GGbptAuPaQ7HohAuLFq1wNaN)
 
