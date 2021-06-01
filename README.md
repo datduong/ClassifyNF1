@@ -13,7 +13,7 @@
 **_[Click to see an example of our survey to pediatricians and geneticists.](https://ncidccpssurveys.gov1.qualtrics.com/jfe/form/SV_2icqumxXrn2x2iG)_**
 
 
-Please contact us for the data. 
+We make the publicly available images included in our analyses available for the purpose of reproducibility and research, with the assumption that these would not be used for commercial or other purposes that would not be considered fair use. **[Download the data here]()**. 
 
 
 **[Pytorch pre-trained models (ends with .pth) are on this google drive here.](https://drive.google.com/drive/folders/1m2c7uWPOkIK_FU3gTIpjJbqfpYHqE_0_?usp=sharing)**
