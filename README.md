@@ -13,7 +13,7 @@
 **_[Click to see an example of our survey to pediatricians and geneticists.](https://ncidccpssurveys.gov1.qualtrics.com/jfe/form/SV_2icqumxXrn2x2iG)_**
 
 
-We make the publicly available images included in our analyses available for the purpose of reproducibility and research, with the assumption that these would not be used for commercial or other purposes that would not be considered fair use. **[Download the data here](http://doi.org/10.5281/zenodo.4891877)**. 
+We make the versions of the publicly available images included in our analyses available for the purpose of reproducibility and research, with the assumption that these would not be used for purposes that would not be considered fair use. These data were compiled to produce a new, derivative work, which we offer as a whole. We cannot share the original images and related data with requestors, but have provided links to the URLs in the manuscript describing this work. We cannot guarantee that the URLs or images are accurate or up-to-date, and encourage interested parties to refer to the sources. **[Download the data here](http://doi.org/10.5281/zenodo.4891877)**. 
 
 
 **[Pytorch pre-trained models (ends with .pth) are on this google drive here.](https://drive.google.com/drive/folders/1m2c7uWPOkIK_FU3gTIpjJbqfpYHqE_0_?usp=sharing)**
