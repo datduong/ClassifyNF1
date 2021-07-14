@@ -8,6 +8,6 @@ do
 cd /data/duongdb/ClassifyNF1
 modeldir="/data/duongdb/DeployOnline/ClassifyNF1/Example/"$modelname
 labels="AK,BCC,BKL,DF,EverythingElse,HMI,IP,MA,ML,NF1,SCC,TSC,VASC,melanoma,nevus,unknown"
-python3 ensemble_our_classifier.py --model-dir $modeldir --labels $labels
+python3 ensemble_our_classifier.py --model-dir $modeldir --labels $labels --NF1 1
 done 
 

@@ -44,11 +44,11 @@ class Effnet_Melanoma(nn.Module):
             self.meta = nn.Sequential(
                 nn.Linear(n_meta_features, n_meta_dim[0]),
                 nn.BatchNorm1d(n_meta_dim[0]),
-                Swish_Module(),
+                nn.SiLU(),
                 nn.Dropout(p=0.3),
                 nn.Linear(n_meta_dim[0], n_meta_dim[1]),
                 nn.BatchNorm1d(n_meta_dim[1]),
-                Swish_Module(),
+                nn.SiLU(),
             )
             self.in_ch += n_meta_dim[1]
         self.myfc = nn.Linear(self.in_ch, out_dim) # ! simple classifier
@@ -89,11 +89,11 @@ class Resnest_Melanoma(nn.Module):
             self.meta = nn.Sequential(
                 nn.Linear(n_meta_features, n_meta_dim[0]),
                 nn.BatchNorm1d(n_meta_dim[0]),
-                Swish_Module(),
+                nn.SiLU(),
                 nn.Dropout(p=0.3),
                 nn.Linear(n_meta_dim[0], n_meta_dim[1]),
                 nn.BatchNorm1d(n_meta_dim[1]),
-                Swish_Module(),
+                nn.SiLU(),
             )
             in_ch += n_meta_dim[1]
         self.myfc = nn.Linear(self.in_ch, out_dim)
@@ -134,11 +134,11 @@ class Seresnext_Melanoma(nn.Module):
             self.meta = nn.Sequential(
                 nn.Linear(n_meta_features, n_meta_dim[0]),
                 nn.BatchNorm1d(n_meta_dim[0]),
-                Swish_Module(),
+                nn.SiLU(),
                 nn.Dropout(p=0.3),
                 nn.Linear(n_meta_dim[0], n_meta_dim[1]),
                 nn.BatchNorm1d(n_meta_dim[1]),
-                Swish_Module(),
+                nn.SiLU(),
             )
             in_ch += n_meta_dim[1]
         self.myfc = nn.Linear(in_ch, out_dim)
@@ -160,92 +160,4 @@ class Seresnext_Melanoma(nn.Module):
                 out += self.myfc(dropout(x))
         out /= len(self.dropouts)
         return out
-
-
-class DualObjectiveNf1Celeb ( Effnet_Melanoma ): 
-    def __init__(self, enet_type, out_dim, n_meta_features=0, n_meta_dim=[512, 128], pretrained=False, args=None):
-        super(DualObjectiveNf1Celeb, self).__init__(enet_type, out_dim, n_meta_features, n_meta_dim, pretrained)
-
-        self.myfc_celeb = nn.Linear(self.in_ch, len(args.celeb_label)) # ! simple classifier on celeb, there are 40 attributes
-        # x = "5_o_Clock_Shadow Arched_Eyebrows Attractive Bags_Under_Eyes Bald Bangs Big_Lips Big_Nose Black_Hair Blond_Hair Blurry Brown_Hair Bushy_Eyebrows Chubby Double_Chin Eyeglasses Goatee Gray_Hair Heavy_Makeup High_Cheekbones Male Mouth_Slightly_Open Mustache Narrow_Eyes No_Beard Oval_Face Pale_Skin Pointy_Nose Receding_Hairline Rosy_Cheeks Sideburns Smiling Straight_Hair Wavy_Hair Wearing_Earrings Wearing_Hat Wearing_Lipstick Wearing_Necklace Wearing_Necktie Young"
-
-        self.dropouts_celeb = nn.Dropout(0.2) # ! simple dropout for celeb
-     
-    def forward (self, x, celeb): 
-        # @celeb is sent through same network, but eval on different loss. 
-        
-        # ! forward on skin images
-        # print (x.shape)
-        x = self.extract(x).squeeze(-1).squeeze(-1) ## flatten
-        # print (x.shape)
-        for i, dropout in enumerate(self.dropouts):
-            if i == 0:
-                out = self.myfc(dropout(x))
-            else:
-                out += self.myfc(dropout(x))
-        # print (out.shape)
-        out /= len(self.dropouts) # ! takes average output after doing many dropout
-
-        # ! forward on celeb
-        celeb = self.extract(celeb).squeeze(-1).squeeze(-1) ## flatten
-        celeb = self.myfc_celeb(self.dropouts_celeb(celeb)) # ! simple dropout
-
-        return out, celeb
-
-
-class DualObjectiveNf1CelebEvalNf1 ( DualObjectiveNf1Celeb ): 
-    def __init__(self, enet_type, out_dim, n_meta_features=0, n_meta_dim=[512, 128], pretrained=False, args=None):
-        super(DualObjectiveNf1CelebEvalNf1, self).__init__(enet_type, out_dim, n_meta_features, n_meta_dim, pretrained, args)
-
-    def forward (self, x): 
-        # ! can't do forward on both, celeb and skin, not sure how attribution lib works.
-        # ! best to just do simple forward on skin 
-        # ! forward on skin images
-        x = self.extract(x).squeeze(-1).squeeze(-1) ## flatten
-        for i, dropout in enumerate(self.dropouts):
-            if i == 0:
-                out = self.myfc(dropout(x))
-            else:
-                out += self.myfc(dropout(x))
-        out /= len(self.dropouts) # ! takes average output after doing many dropout
-        return out
-
-
-
-class Celeb24FaceFeat ( Effnet_Melanoma ): 
-    def __init__(self, enet_type, out_dim, n_meta_features=0, n_meta_dim=[512, 128], pretrained=False, args=None):
-        super(Celeb24FaceFeat, self).__init__(enet_type, out_dim, n_meta_features, n_meta_dim, pretrained)
-
-        self.myfc_celeb = nn.Linear(self.in_ch, len(args.celeb_label)) # ! simple classifier on celeb, there are 40 attributes
-        # x = "5_o_Clock_Shadow Arched_Eyebrows Attractive Bags_Under_Eyes Bald Bangs Big_Lips Big_Nose Black_Hair Blond_Hair Blurry Brown_Hair Bushy_Eyebrows Chubby Double_Chin Eyeglasses Goatee Gray_Hair Heavy_Makeup High_Cheekbones Male Mouth_Slightly_Open Mustache Narrow_Eyes No_Beard Oval_Face Pale_Skin Pointy_Nose Receding_Hairline Rosy_Cheeks Sideburns Smiling Straight_Hair Wavy_Hair Wearing_Earrings Wearing_Hat Wearing_Lipstick Wearing_Necklace Wearing_Necktie Young"
-
-        self.dropouts_celeb = nn.Dropout(0.2) # ! simple dropout for celeb
-     
-    def forward (self, celeb): 
-        # @celeb is sent through same network, but eval on different loss. 
-
-        # ! forward on celeb
-        celeb = self.extract(celeb).squeeze(-1).squeeze(-1) ## flatten
-        celeb = self.myfc_celeb(self.dropouts_celeb(celeb)) # ! simple dropout
-
-        return celeb
-
-
-class Celeb24FaceFeatResnest ( Resnest_Melanoma ): 
-    def __init__(self, enet_type, out_dim, n_meta_features=0, n_meta_dim=[512, 128], pretrained=False, args=None):
-        super(Celeb24FaceFeatResnest, self).__init__(enet_type, out_dim, n_meta_features, n_meta_dim, pretrained)
-
-        self.myfc_celeb = nn.Linear(self.in_ch, len(args.celeb_label)) # ! simple classifier on celeb, there are 40 attributes
-        # x = "5_o_Clock_Shadow Arched_Eyebrows Attractive Bags_Under_Eyes Bald Bangs Big_Lips Big_Nose Black_Hair Blond_Hair Blurry Brown_Hair Bushy_Eyebrows Chubby Double_Chin Eyeglasses Goatee Gray_Hair Heavy_Makeup High_Cheekbones Male Mouth_Slightly_Open Mustache Narrow_Eyes No_Beard Oval_Face Pale_Skin Pointy_Nose Receding_Hairline Rosy_Cheeks Sideburns Smiling Straight_Hair Wavy_Hair Wearing_Earrings Wearing_Hat Wearing_Lipstick Wearing_Necklace Wearing_Necktie Young"
-
-        self.dropouts_celeb = nn.Dropout(0.2) # ! simple dropout for celeb
-     
-    def forward (self, celeb): 
-        # @celeb is sent through same network, but eval on different loss. 
-
-        # ! forward on celeb
-        celeb = self.extract(celeb).squeeze(-1).squeeze(-1) ## flatten
-        celeb = self.myfc_celeb(self.dropouts_celeb(celeb)) # ! simple dropout
-
-        return celeb
 
