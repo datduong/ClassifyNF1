@@ -1,7 +1,7 @@
 ## NF1 dataset 
 
 
-**[Our current paper.](https://www.medrxiv.org/content/10.1101/2021.04.08.21255123v1)**
+**[Our current paper.](https://www.sciencedirect.com/science/article/pii/S2666247721000348)**
 
 
 **[What is NF1?](https://www.cancer.net/cancer-types/neurofibromatosis-type-1)**
@@ -13,7 +13,7 @@
 **_[Click to see an example of our survey to pediatricians and geneticists.](https://ncidccpssurveys.gov1.qualtrics.com/jfe/form/SV_2icqumxXrn2x2iG)_**
 
 
-We make the versions of the publicly available images included in our analyses available for the purpose of reproducibility and research, with the assumption that these would not be used for purposes that would not be considered fair use. These data were compiled to produce a new, derivative work, which we offer as a whole. We cannot share the original images and related data with requestors, but have provided links to the URLs in the manuscript describing this work. We cannot guarantee that the URLs or images are accurate or up-to-date, and encourage interested parties to refer to the sources. **[Download the data here](https://figshare.com/articles/figure/NF1-and-related-diseases-images_zip/14721051)**. 
+We make the versions of the publicly available images included in our analyses available for the purpose of reproducibility and research, with the assumption that these would not be used for purposes that would not be considered fair use. These data were compiled to produce a new, derivative work, which we offer as a whole. We cannot share the original images and related data with requestors, but have provided links to the URLs in the manuscript describing this work. We cannot guarantee that the URLs or images are accurate or up-to-date, and encourage interested parties to refer to the sources. **[Download the data here](https://figshare.com/account/articles/22596160)**. 
 
 
 **[Pytorch pre-trained models (ends with .pth) are on this google drive here.](https://drive.google.com/drive/folders/1m2c7uWPOkIK_FU3gTIpjJbqfpYHqE_0_?usp=sharing)** We used pytorch 1.7 (also please install nvidia apex otherwise training will be slow).
